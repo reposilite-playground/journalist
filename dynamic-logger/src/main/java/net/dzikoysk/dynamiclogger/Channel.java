@@ -44,9 +44,15 @@ public class Channel implements Comparable<Channel> {
     public static final Channel FATAL = Lists.add(PREDEFINED_CHANNELS, new Channel("fatal", 60.0, ChannelIntention.NEGATIVE));
     public static final Channel ERROR = Lists.add(PREDEFINED_CHANNELS, new Channel("error", 50.0, ChannelIntention.NEGATIVE));
     public static final Channel WARN = Lists.add(PREDEFINED_CHANNELS, new Channel("warn", 40.0, ChannelIntention.NEGATIVE));
-    public static final Channel INFO = Lists.add(PREDEFINED_CHANNELS, new Channel("info", 30.0, ChannelIntention.POSITIVE));
-    public static final Channel DEBUG = Lists.add(PREDEFINED_CHANNELS, new Channel("debug", 20.0, ChannelIntention.POSITIVE));
-    public static final Channel TRACE = Lists.add(PREDEFINED_CHANNELS, new Channel("trace", 10.0, ChannelIntention.POSITIVE));
+    public static final Channel INFO = Lists.add(PREDEFINED_CHANNELS, new Channel("info", 30.0, ChannelIntention.NEUTRAL));
+    public static final Channel DEBUG = Lists.add(PREDEFINED_CHANNELS, new Channel("debug", 20.0, ChannelIntention.NEUTRAL));
+    public static final Channel TRACE = Lists.add(PREDEFINED_CHANNELS, new Channel("trace", 10.0, ChannelIntention.NEUTRAL));
+
+    /**
+     * Represents all logging level with positive priority.
+     * You cannot log to this channel, but you can use it as a lowest possible threshold.
+     */
+    public static final Channel ALL = new Channel("all", 0.0, ChannelIntention.NEUTRAL);
 
     private final String name;
     private final double priority;
@@ -61,6 +67,25 @@ public class Channel implements Comparable<Channel> {
     @Override
     public int compareTo(Channel to) {
         return Double.compare(priority, to.priority);
+    }
+
+    @Override
+    public boolean equals(Object to) {
+        if (this == to) {
+            return true;
+        }
+
+        if (to == null || getClass() != to.getClass()) {
+            return false;
+        }
+
+        Channel channel = (Channel) to;
+        return name.equals(channel.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return name.hashCode();
     }
 
     /**

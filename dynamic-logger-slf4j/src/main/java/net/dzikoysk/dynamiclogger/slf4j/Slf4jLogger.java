@@ -13,6 +13,10 @@ public class Slf4jLogger extends DefaultLogger {
         this.logger = logger;
     }
 
+    public Slf4jLogger(Logger logger) {
+        this(logger, Channel.ALL);
+    }
+
     @Override
     protected void internalLog(Channel channel, String message) {
         switch (Slf4jChannel.of(channel)) {
@@ -32,6 +36,8 @@ public class Slf4jLogger extends DefaultLogger {
             case TRACE:
                 logger.trace(message);
                 break;
+            default:
+                throw new IllegalStateException("Unsupported channel: " + channel);
         }
     }
 

@@ -4,7 +4,7 @@ import net.dzikoysk.dynamiclogger.Channel;
 
 import java.util.Arrays;
 
-enum Slf4jChannel {
+public enum Slf4jChannel {
 
     FATAL(Channel.FATAL),
     ERROR(Channel.ERROR),

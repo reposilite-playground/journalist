@@ -17,16 +17,32 @@
 package net.dzikoysk.dynamiclogger.backend;
 
 import net.dzikoysk.dynamiclogger.Channel;
+import net.dzikoysk.dynamiclogger.ChannelIntention;
 
+/**
+ * Uses {@link java.lang.System#in} and {@link java.lang.System#err} to log messages
+ */
 public class SystemLogger extends DefaultLogger {
 
+    public SystemLogger(Channel threshold) {
+        super(threshold);
+    }
+
+    /**
+     * Uses {@link net.dzikoysk.dynamiclogger.Channel#INFO} as default threshold.
+     */
     public SystemLogger() {
-        super(Channel.INFO);
+        this(Channel.INFO);
     }
 
     @Override
     protected void internalLog(Channel channel, String message) {
-        System.out.println(message);
+        if (channel.getIntention() == ChannelIntention.NEGATIVE) {
+            System.err.println(message);
+        }
+        else {
+            System.out.println(message);
+        }
     }
 
 }
