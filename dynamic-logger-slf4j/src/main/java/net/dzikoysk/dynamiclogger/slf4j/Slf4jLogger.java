@@ -36,8 +36,6 @@ public class Slf4jLogger extends DefaultLogger {
             case TRACE:
                 logger.trace(message);
                 break;
-            default:
-                throw new IllegalStateException("Unsupported channel: " + channel);
         }
     }
 
