@@ -12,6 +12,7 @@
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <modules>
@@ -19,6 +20,48 @@
         <module>dynamic-logger-slf4j</module>
     </modules>
 
+    <dependencyManagement>
+        <dependencies>
+            <!-- Modules -->
+            <dependency>
+                <groupId>net.dzikoysk</groupId>
+                <artifactId>dynamic-logger</artifactId>
+                <version>1.0.0</version>
+            </dependency>
+
+            <!-- SL4J -->
+            <dependency>
+                <groupId>org.tinylog</groupId>
+                <artifactId>slf4j-tinylog</artifactId>
+                <version>2.3.1</version>
+            </dependency>
+            <dependency>
+                <groupId>org.tinylog</groupId>
+                <artifactId>tinylog-api</artifactId>
+                <version>2.3.1</version>
+            </dependency>
+
+            <!-- Tests -->
+            <dependency>
+                <groupId>org.codehaus.groovy</groupId>
+                <artifactId>groovy</artifactId>
+                <version>3.0.7</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter-api</artifactId>
+                <version>5.7.1</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter-engine</artifactId>
+                <version>5.7.1</version>
+                <scope>test</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <repositories>
         <repository>
@@ -35,16 +78,23 @@
     </distributionManagement>
 
     <build>
+        <defaultGoal>clean install</defaultGoal>
         <plugins>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>3.2.0</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
-                <version>3.2.0</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
             </plugin>
         </plugins>
         <pluginManagement>
@@ -72,11 +122,6 @@
                             <exclude>META-INF/**</exclude>
                         </excludes>
                     </configuration>
-                </plugin>
-                <plugin>
-                    <groupId>org.eluder.coveralls</groupId>
-                    <artifactId>coveralls-maven-plugin</artifactId>
-                    <version>4.3.0</version>
                 </plugin>
                 <plugin>
                     <groupId>org.codehaus.gmavenplus</groupId>
@@ -114,8 +159,10 @@
                     <executions>
                         <execution>
                             <id>attach-sources</id>
-                            <phase>deploy</phase>
-                            <goals><goal>jar-no-fork</goal></goals>
+                            <phase>verify</phase>
+                            <goals>
+                                <goal>jar-no-fork</goal>
+                            </goals>
                         </execution>
                     </executions>
                 </plugin>
@@ -132,5 +179,4 @@
             </plugins>
         </pluginManagement>
     </build>
-
 </project>

@@ -16,8 +16,7 @@
 
 package net.dzikoysk.dynamiclogger;
 
-import org.panda_lang.utilities.commons.collection.Lists;
-
+import java.util.Arrays;
 import java.util.Optional;
 import java.util.Set;
 import java.util.TreeSet;
@@ -39,20 +38,20 @@ import java.util.TreeSet;
  */
 public class Channel implements Comparable<Channel> {
 
-    private static final Set<Channel> PREDEFINED_CHANNELS = new TreeSet<>();
-
-    public static final Channel FATAL = Lists.add(PREDEFINED_CHANNELS, new Channel("fatal", 60.0, ChannelIntention.NEGATIVE));
-    public static final Channel ERROR = Lists.add(PREDEFINED_CHANNELS, new Channel("error", 50.0, ChannelIntention.NEGATIVE));
-    public static final Channel WARN = Lists.add(PREDEFINED_CHANNELS, new Channel("warn", 40.0, ChannelIntention.NEGATIVE));
-    public static final Channel INFO = Lists.add(PREDEFINED_CHANNELS, new Channel("info", 30.0, ChannelIntention.NEUTRAL));
-    public static final Channel DEBUG = Lists.add(PREDEFINED_CHANNELS, new Channel("debug", 20.0, ChannelIntention.NEUTRAL));
-    public static final Channel TRACE = Lists.add(PREDEFINED_CHANNELS, new Channel("trace", 10.0, ChannelIntention.NEUTRAL));
-
     /**
      * Represents all logging level with positive priority.
      * You cannot log to this channel, but you can use it as a lowest possible threshold.
      */
     public static final Channel ALL = new Channel("all", 0.0, ChannelIntention.NEUTRAL);
+
+    public static final Channel FATAL = new Channel("fatal", 60.0, ChannelIntention.NEGATIVE);
+    public static final Channel ERROR = new Channel("error", 50.0, ChannelIntention.NEGATIVE);
+    public static final Channel WARN = new Channel("warn", 40.0, ChannelIntention.NEGATIVE);
+    public static final Channel INFO = new Channel("info", 30.0, ChannelIntention.NEUTRAL);
+    public static final Channel DEBUG = new Channel("debug", 20.0, ChannelIntention.NEUTRAL);
+    public static final Channel TRACE = new Channel("trace", 10.0, ChannelIntention.NEUTRAL);
+
+    private static final Set<Channel> PREDEFINED_CHANNELS = new TreeSet<>(Arrays.asList(FATAL, ERROR, WARN, INFO, DEBUG, TRACE));
 
     private final String name;
     private final double priority;

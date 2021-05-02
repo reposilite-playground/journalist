@@ -1,10 +1,9 @@
 package net.dzikoysk.dynamiclogger.backend;
 
 import net.dzikoysk.dynamiclogger.Channel;
-import org.panda_lang.utilities.commons.collection.Maps;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.AbstractMap;
+import java.util.HashMap;
 import java.util.Map.Entry;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
@@ -29,7 +28,7 @@ public class InMemoryLogger extends DefaultLogger {
 
     @Override
     protected void internalLog(Channel channel, String message) {
-        messages.add(Maps.entryOf(channel, message));
+        messages.add(new AbstractMap.SimpleImmutableEntry<>(channel, message));
     }
 
     /**

@@ -11,7 +11,10 @@ Available implementations:
 #### Artifact 
 ```xml
 <dependency>
+    <!-- Default -->
     <artifactId>dynamic-logger</artifactId>
+    <!-- For SL4J based implementations -->
+    <artifactId>dynamic-logger-sl4j</artifactId>
     <groupId>net.dzikoysk</groupId>
     <version>1.0.0</version>
 </dependency>
@@ -73,7 +76,7 @@ assertTrue(inMemory.getMessages().stream() // Stream of Entry<Channel, String /*
 
 ```java
 Logger logger = new AggregatedLogger(
-        logger,
+        customLogger,
         new SystemLogger(),
         new Slf4jLogger(LoggerFactory.getLogger("Default logger"), Channel.ALL)
 );
