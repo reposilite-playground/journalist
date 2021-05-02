@@ -1,4 +1,4 @@
-# Dynamic Logger [![CI](https://github.com/dzikoysk/dynamic-logger/actions/workflows/maven.yml/badge.svg)](https://github.com/dzikoysk/dynamic-logger/actions/workflows/maven.yml)
+# Dynamic Logger [![CI](https://github.com/dzikoysk/dynamic-logger/actions/workflows/maven.yml/badge.svg)](https://github.com/dzikoysk/dynamic-logger/actions/workflows/maven.yml) [![codecov](https://codecov.io/gh/dzikoysk/dynamic-logger/branch/main/graph/badge.svg?token=bxo0JbVeDE)](https://codecov.io/gh/dzikoysk/dynamic-logger)
 Tiny logging wrapper dedicated for CLI oriented applications with non-static logger that require dynamic threshold/level changes,
 programmable output formatting, custom levels, print stream redirecting and easily testable output.
 
