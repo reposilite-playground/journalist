@@ -55,12 +55,6 @@ public abstract class DefaultLogger implements Logger {
     }
 
     @Override
-    public Logger error(String message) {
-        log(Channel.ERROR, "# " + message.replace("\n", "\n# "));
-        return this;
-    }
-
-    @Override
     public Logger exception(Channel channel, Throwable throwable) {
         PrintStream printStream = toPrintStream(channel);
         throwable.printStackTrace(printStream);

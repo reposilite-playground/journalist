@@ -8,15 +8,21 @@ class ChannelTest {
 
     @Test
     void shouldHaveValidEqualsAndHashCodeImplementations() {
-        Channel a = new Channel("all", 0, ChannelIntention.NEUTRAL);
-        Channel b = new Channel("all", 0, ChannelIntention.NEUTRAL);
+        Channel channel = new Channel("all", 0, ChannelIntention.NEUTRAL);
+        assertNotEquals(null, channel);
 
-        assertTrue(a.equals(b) && b.equals(a));
-        assertEquals(a.hashCode(), b.hashCode());
+        Channel same = new Channel("all", 0, ChannelIntention.NEUTRAL);
+        assertTrue(channel.equals(same) && same.equals(channel));
+        assertEquals(channel.hashCode(), same.hashCode());
 
-        Channel c = new Channel("all", -1, ChannelIntention.NEUTRAL);
-        assertFalse(a.equals(c) || c.equals(a));
-        assertNotEquals(a.hashCode(), c.hashCode());
+        Channel withDifferentName = new Channel("one", -1, ChannelIntention.NEUTRAL);
+        Channel withDifferentPriority = new Channel("all", -1, ChannelIntention.NEUTRAL);
+        Channel withDifferentIntention = new Channel("all", -1, ChannelIntention.NEGATIVE);
+
+        for (Channel variant : new Channel[] { withDifferentName, withDifferentPriority, withDifferentIntention }) {
+            assertFalse(channel.equals(variant) || variant.equals(channel));
+            assertNotEquals(channel.hashCode(), variant.hashCode());
+        }
     }
 
     @Test

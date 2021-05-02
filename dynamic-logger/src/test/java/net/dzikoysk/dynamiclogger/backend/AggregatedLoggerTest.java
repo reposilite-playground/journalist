@@ -13,7 +13,6 @@ final class AggregatedLoggerTest {
 
         Logger logger = new AggregatedLogger(
                 inMemoryLogger,
-                new SystemLogger(),
                 inMemoryLogger
         );
 
