@@ -32,7 +32,7 @@ public class SystemLogger extends DefaultLogger {
      * Uses {@link net.dzikoysk.dynamiclogger.Channel#INFO} as default threshold.
      */
     public SystemLogger() {
-        this(Channel.INFO);
+        this(Channel.ALL);
     }
 
     @Override

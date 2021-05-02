@@ -23,7 +23,7 @@ public class InMemoryLogger extends DefaultLogger {
      * Uses {@link net.dzikoysk.dynamiclogger.Channel#INFO} as a default threshold.
      */
     public InMemoryLogger() {
-        super(Channel.INFO);
+        this(Channel.ALL);
     }
 
     @Override
@@ -38,7 +38,7 @@ public class InMemoryLogger extends DefaultLogger {
      * @return true if any stored message contains the given value, otherwise false
      */
     public boolean contains(String message) {
-        return messages.stream().anyMatch(entry -> entry.getValue().contains(message));
+        return getMessages().stream().anyMatch(entry -> entry.getValue().contains(message));
     }
 
     /**

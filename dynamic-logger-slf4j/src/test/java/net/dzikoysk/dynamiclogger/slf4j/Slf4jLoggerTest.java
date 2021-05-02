@@ -1,6 +1,7 @@
 package net.dzikoysk.dynamiclogger.slf4j;
 
 import net.dzikoysk.dynamiclogger.Channel;
+import net.dzikoysk.dynamiclogger.ChannelIntention;
 import net.dzikoysk.dynamiclogger.Logger;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
@@ -12,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 final class Slf4jLoggerTest {
 
-    private final Logger logger = new Slf4jLogger(LoggerFactory.getLogger("DynamicLogger"), Channel.ALL);
+    private final Logger logger = new Slf4jLogger(LoggerFactory.getLogger("DynamicLogger"));
 
     @AfterEach
     public void cleanup() {
@@ -20,7 +21,7 @@ final class Slf4jLoggerTest {
     }
 
     @Test
-    void shouldCallSl4jLogger() {
+    void shouldRespectThreshold() {
         logger.setThreshold(Channel.WARN);
         logger.info("should not be logged");
         assertTrue(DynamicLoggerWriter.getMessages().isEmpty());
@@ -35,6 +36,12 @@ final class Slf4jLoggerTest {
     void shouldProperlyMapChannelsToLevels(Slf4jChannel slf4jChannel) {
         logger.log(slf4jChannel.getChannel(), slf4jChannel.name());
         assertTrue(DynamicLoggerWriter.contain(slf4jChannel.getLevel().name() + " | " + slf4jChannel.name()));
+    }
+
+    @Test
+    void shouldRedirectCustomChannelsToInfo() {
+        logger.log(new Channel("Custom", 10, ChannelIntention.NEUTRAL), "Message");
+        assertTrue(DynamicLoggerWriter.contain("INFO | Message"));
     }
 
 }
