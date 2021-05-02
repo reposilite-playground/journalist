@@ -79,12 +79,16 @@ public class Channel implements Comparable<Channel> {
         }
 
         Channel channel = (Channel) to;
-        return name.equals(channel.name);
+        return name.equals(channel.name) && priority == channel.priority && intention == channel.intention;
     }
 
     @Override
     public int hashCode() {
-        return name.hashCode();
+        int result = name.hashCode();
+        long temp = Double.doubleToLongBits(priority);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        result = 31 * result + intention.hashCode();
+        return result;
     }
 
     /**
@@ -130,7 +134,7 @@ public class Channel implements Comparable<Channel> {
     /**
      * Get predefined channels as set
      *
-     * @return a copy of predfined channels set
+     * @return a copy of predefined channels set
      */
     public static Set<Channel> getPredefinedChannels() {
         return new TreeSet<>(PREDEFINED_CHANNELS);
