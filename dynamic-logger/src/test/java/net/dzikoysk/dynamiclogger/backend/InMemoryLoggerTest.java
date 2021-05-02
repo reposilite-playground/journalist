@@ -1,11 +1,12 @@
 package net.dzikoysk.dynamiclogger.backend;
 
+import net.dzikoysk.dynamiclogger.Channel;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 final class InMemoryLoggerTest {
 
-    private final InMemoryLogger logger = new InMemoryLogger();
+    private final InMemoryLogger logger = new InMemoryLogger(Channel.INFO);
 
     @Test
     void shouldStoreMessages() {
