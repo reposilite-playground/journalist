@@ -16,7 +16,7 @@ Available implementations:
     <!-- For SL4J based implementations -->
     <artifactId>dynamic-logger-sl4j</artifactId>
     <groupId>net.dzikoysk</groupId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 </dependency>
 ```
 Repository:

@@ -21,7 +21,7 @@ import java.io.PrintStream;
 /**
  * Proxy interface for dynamic logging handler
  */
-public interface Logger {
+public interface Logger extends Journalist {
 
     /**
      * Log the given message to {@link net.dzikoysk.dynamiclogger.Channel#FATAL} channel

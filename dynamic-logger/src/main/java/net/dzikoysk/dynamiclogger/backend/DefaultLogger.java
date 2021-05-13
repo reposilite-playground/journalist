@@ -73,4 +73,9 @@ public abstract class DefaultLogger implements Logger {
         return new RedirectedOutputStream(message -> log(channel, message)).toPrintStream();
     }
 
+    @Override
+    public Logger getLogger() {
+        return this;
+    }
+
 }

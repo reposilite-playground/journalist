@@ -10,7 +10,6 @@ import static org.junit.jupiter.api.Assertions.*;
 final class LoggerTest {
 
     private static final class TestLogger implements Logger {
-
         private final Stack<String> messages = new Stack<>();
 
         @Override
@@ -35,6 +34,10 @@ final class LoggerTest {
             throw new UnsupportedOperationException("Not implemented");
         }
 
+        @Override
+        public Logger getLogger() {
+            return this;
+        }
     }
 
     @Test

@@ -20,7 +20,7 @@ package net.dzikoysk.dynamiclogger;
  * Represents logger container
  */
 @FunctionalInterface
-public interface LoggerHolder {
+public interface Journalist {
 
     /**
      * Get stored logger
