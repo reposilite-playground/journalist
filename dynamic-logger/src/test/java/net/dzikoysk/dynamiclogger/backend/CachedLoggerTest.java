@@ -3,6 +3,11 @@ package net.dzikoysk.dynamiclogger.backend;
 import net.dzikoysk.dynamiclogger.Channel;
 import org.junit.jupiter.api.Test;
 
+import java.util.AbstractMap;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map.Entry;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 final class CachedLoggerTest {
@@ -22,6 +27,25 @@ final class CachedLoggerTest {
         assertTrue(logger.contains(testString + "2"));
         assertTrue(logger.contains(testString + "3"));
         assertEquals(3, logger.getMessages().size());
+    }
+
+    @Test
+    void shouldFindMessage() {
+        logger.info("INFO Find me!");
+
+        assertTrue(logger.find((channel, message) -> message.contains("Find")).isPresent());
+    }
+
+    @Test
+    void shouldGetMessages() {
+        logger.info("INFO First message.");
+        logger.info("INFO Second message.");
+
+        List<Entry<Channel, String>> testList = new ArrayList<>();
+        testList.add(new AbstractMap.SimpleImmutableEntry<>(Channel.INFO, "INFO First message."));
+        testList.add(new AbstractMap.SimpleImmutableEntry<>(Channel.INFO, "INFO Second message."));
+
+        assertEquals(logger.getMessages(), testList);
     }
 
 }
