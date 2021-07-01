@@ -9,7 +9,7 @@ import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 /**
- * Stores all messages in memory as a queue and does not print any message directly
+ * Stores all messages in memory as a queue and does not print any message directly.
  */
 public class InMemoryLogger extends DefaultLogger {
 

@@ -1,8 +1,9 @@
 package net.dzikoysk.dynamiclogger.backend;
 
 import net.dzikoysk.dynamiclogger.Channel;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 final class InMemoryLoggerTest {
 
@@ -13,8 +14,8 @@ final class InMemoryLoggerTest {
         logger.debug("DEBUG Should not store this message");
         logger.info("INFO Should store this message");
 
-        Assertions.assertFalse(logger.contains("DEBUG"));
-        Assertions.assertTrue(logger.contains("INFO"));
+        assertFalse(logger.contains("DEBUG"));
+        assertTrue(logger.contains("INFO"));
     }
 
 }
