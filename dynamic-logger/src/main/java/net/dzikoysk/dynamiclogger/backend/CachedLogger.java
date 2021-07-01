@@ -36,7 +36,7 @@ public class CachedLogger extends DefaultLogger {
     }
 
     /**
-     * Check if one of the stored messages contain the given text
+     * Check if one of the stored messages contain the given text.
      *
      * @param message the text to search for
      * @return true if any stored message contains the given value, otherwise false
@@ -46,17 +46,17 @@ public class CachedLogger extends DefaultLogger {
     }
 
     /**
-     * Find entry with message and channel related to it
+     * Find entry with message and channel related to it.
      *
-     * @param value the predicate for the channel or the message of the entry
+     * @param filter the predicate for the channel or the message of the entry
      * @return the entry of the given predicate
      */
-    public Optional<Entry<Channel, String>> find(BiPredicate<Channel, String> value) {
-        return messages.find(entry -> value.test(entry.getKey(), entry.getValue()));
+    public Optional<Entry<Channel, String>> find(BiPredicate<Channel, String> filter) {
+        return messages.find(entry -> filter.test(entry.getKey(), entry.getValue()));
     }
 
     /**
-     * Get all stored messages
+     * Get all stored messages.
      *
      * @return the list of stored messages
      */

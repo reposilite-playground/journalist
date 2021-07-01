@@ -43,9 +43,9 @@ class CircularBuffer<T> {
     }
 
     @SuppressWarnings("unchecked")
-    public synchronized Optional<T> find(Predicate<T> value) {
+    public synchronized Optional<T> find(Predicate<T> filter) {
         for (Object element : bufferArray) {
-            if (value.test((T) element)) {
+            if (filter.test((T) element)) {
                 return Optional.of((T) element);
             }
         }
