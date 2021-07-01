@@ -27,60 +27,66 @@ public interface Logger extends Journalist {
      * Log the given message to {@link net.dzikoysk.dynamiclogger.Channel#FATAL} channel
      *
      * @param message the message to log
+     * @param arguments arguments to the message
      * @return the logger instance
      */
-    default Logger fatal(String message) {
-        return log(Channel.FATAL, message);
+    default Logger fatal(String message, Object... arguments) {
+        return log(Channel.FATAL, message, arguments);
     }
 
     /**
      * Log the given message to {@link net.dzikoysk.dynamiclogger.Channel#ERROR} channel
      *
      * @param message the message to log
+     * @param arguments arguments to the message
      * @return the logger instance
      */
-    default Logger error(String message) {
-        return log(Channel.ERROR, message);
+    default Logger error(String message, Object... arguments) {
+        return log(Channel.ERROR, message, arguments);
     }
 
     /**
      * Log the given message to {@link net.dzikoysk.dynamiclogger.Channel#WARN}
      *
      * @param message the message to log
+     * @param arguments arguments to the message
      * @return the logger instance
      */
-    default Logger warn(String message) {
-        return log(Channel.WARN, message);
+    default Logger warn(String message, Object... arguments) {
+        return log(Channel.WARN, message, arguments);
     }
 
     /**
      * Log the given message to {@link net.dzikoysk.dynamiclogger.Channel#INFO}
      *
      * @param message the message to log
+     * @param arguments arguments to the message
      * @return the logger instance
      */
-    default Logger info(String message) {
-        return log(Channel.INFO, message);
+    default Logger info(String message, Object... arguments) {
+        return log(Channel.INFO, message, arguments);
     }
 
     /**
      * Log the given message to {@link net.dzikoysk.dynamiclogger.Channel#DEBUG}
      *
      * @param message the message to log
+     * @param arguments arguments to the message
      * @return the logger instance
      */
-    default Logger debug(String message) {
-        return log(Channel.DEBUG, message);
+    default Logger debug(String message, Object... arguments) {
+        return log(Channel.DEBUG, message, arguments);
     }
 
     /**
      * Log the given message to {@link net.dzikoysk.dynamiclogger.Channel#TRACE}
      *
      * @param message the message to log
+     * @param arguments arguments to the message
      * @return the logger instance
      */
-    default Logger trace(String message) {
-        return log(Channel.TRACE, message);
+    default Logger trace(String message, Object... arguments) {
+        return log(Channel.TRACE, message, arguments);
     }
 
     /**
@@ -88,9 +94,10 @@ public interface Logger extends Journalist {
      *
      * @param channel the channel to log to
      * @param message the message to log
+     * @param arguments arguments to the message
      * @return the logger instance
      */
-    Logger log(Channel channel, String message);
+    Logger log(Channel channel, String message, Object... arguments);
 
     /**
      * Log the given exception to the {@link net.dzikoysk.dynamiclogger.Channel#ERROR} channel
