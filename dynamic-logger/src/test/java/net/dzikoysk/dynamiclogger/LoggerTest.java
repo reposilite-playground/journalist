@@ -13,8 +13,8 @@ final class LoggerTest {
         private final Stack<String> messages = new Stack<>();
 
         @Override
-        public Logger log(Channel channel, String message) {
-            messages.push(channel.getName() + " | " + message);
+        public Logger log(Channel channel, String message, Object... arguments) {
+            messages.push(channel.getName() + " | " + String.format(message.replace("{}", "%s"), arguments));
             return this;
         }
 
@@ -44,23 +44,23 @@ final class LoggerTest {
     void shouldProperlyMapUtilityMethodsToChannels() {
         TestLogger logger = new TestLogger();
 
-        logger.trace("Trace");
-        assertEquals("trace | Trace", logger.messages.peek());
+        logger.trace("Trace {}-{}", "trace", 1);
+        assertEquals("trace | Trace trace-1", logger.messages.peek());
 
-        logger.debug("Debug");
-        assertEquals("debug | Debug", logger.messages.peek());
+        logger.debug("Debug {}-{}", "debug", 1);
+        assertEquals("debug | Debug debug-1", logger.messages.peek());
 
-        logger.info("Info");
-        assertEquals("info | Info", logger.messages.peek());
+        logger.info("Info {}-{}", "info", 1);
+        assertEquals("info | Info info-1", logger.messages.peek());
 
-        logger.warn("Warn");
-        assertEquals("warn | Warn", logger.messages.peek());
+        logger.warn("Warn {}-{}", "warn", 1);
+        assertEquals("warn | Warn warn-1", logger.messages.peek());
 
-        logger.error("Error");
-        assertEquals("error | Error", logger.messages.peek());
+        logger.error("Error {}-{}", "error", 1);
+        assertEquals("error | Error error-1", logger.messages.peek());
 
-        logger.fatal("Fatal");
-        assertEquals("fatal | Fatal", logger.messages.peek());
+        logger.fatal("Fatal {}-{}", "fatal", 1);
+        assertEquals("fatal | Fatal fatal-1", logger.messages.peek());
 
         logger.exception(new Exception("TestException"));
         assertEquals("error | TestException", logger.messages.peek());

@@ -42,13 +42,13 @@ public abstract class DefaultLogger implements Logger {
     protected abstract void internalLog(Channel channel, String message);
 
     @Override
-    public Logger log(Channel channel, String message) {
+    public Logger log(Channel channel, String message, Object... arguments) {
         if (channel.equals(Channel.ALL)) {
             throw new IllegalStateException("Cannot log to ALL channel");
         }
 
         if (channel.getPriority() >= threshold.getPriority()) {
-            internalLog(channel, message);
+            internalLog(channel, String.format(message.replace("{}", "%s"), arguments));
         }
 
         return this;
