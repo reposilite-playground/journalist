@@ -1,25 +1,30 @@
 package net.dzikoysk.dynamiclogger.backend;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
+import java.util.function.Predicate;
+
 class CircularBuffer<T> {
 
     private final Object[] bufferArray;
 
-    private int front = 0;
-    private int insertLocation = 0;
-    private int size = 0;
+    private int front;
+    private int insertLocation;
+    private int size;
 
     public CircularBuffer(int bufferSize) {
-        bufferArray = new Object[bufferSize];
+        this.bufferArray = new Object[bufferSize];
     }
 
     public synchronized void add(T item) {
-        bufferArray[insertLocation] = item;
-        insertLocation = (insertLocation + 1) % bufferArray.length;
+        this.bufferArray[insertLocation] = item;
+        this.insertLocation = (insertLocation + 1) % bufferArray.length;
 
         if (size == bufferArray.length) {
-            front = (front + 1) % bufferArray.length;
+            this.front = (front + 1) % bufferArray.length;
         } else {
-            size++;
+            this.size++;
         }
     }
 
@@ -28,11 +33,24 @@ class CircularBuffer<T> {
     }
 
     @SuppressWarnings("unchecked")
-    public synchronized T peekAt(int n) {
-        if (size <= n) {
-            return null;
-        } else {
-            return (T) bufferArray[(front + n) % bufferArray.length];
-        }
+    public synchronized List<T> getValues() {
+        Object[] result = new Object[size()];
+
+        System.arraycopy(bufferArray, insertLocation, result, 0, size - insertLocation);
+        System.arraycopy(bufferArray, 0, result, size - insertLocation, insertLocation);
+
+        return (List<T>) Arrays.asList(result);
     }
+
+    @SuppressWarnings("unchecked")
+    public synchronized Optional<T> find(Predicate<T> value) {
+        for (Object element : bufferArray) {
+            if (value.test((T) element)) {
+                return Optional.of((T) element);
+            }
+        }
+
+        return Optional.empty();
+    }
+
 }

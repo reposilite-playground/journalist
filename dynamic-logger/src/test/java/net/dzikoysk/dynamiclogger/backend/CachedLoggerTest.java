@@ -16,6 +16,7 @@ final class CachedLoggerTest {
             logger.info(testString + i);
         }
 
+        Assertions.assertFalse(logger.contains(testString + "0"));
         Assertions.assertTrue(logger.contains(testString + "1"));
         Assertions.assertTrue(logger.contains(testString + "2"));
         Assertions.assertTrue(logger.contains(testString + "3"));
