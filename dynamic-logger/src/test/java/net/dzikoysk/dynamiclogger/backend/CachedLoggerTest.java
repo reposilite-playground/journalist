@@ -1,8 +1,9 @@
 package net.dzikoysk.dynamiclogger.backend;
 
 import net.dzikoysk.dynamiclogger.Channel;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 final class CachedLoggerTest {
 
@@ -16,11 +17,11 @@ final class CachedLoggerTest {
             logger.info(testString + i);
         }
 
-        Assertions.assertFalse(logger.contains(testString + "0"));
-        Assertions.assertTrue(logger.contains(testString + "1"));
-        Assertions.assertTrue(logger.contains(testString + "2"));
-        Assertions.assertTrue(logger.contains(testString + "3"));
-        Assertions.assertEquals(3, logger.getMessages().size());
+        assertFalse(logger.contains(testString + "0"));
+        assertTrue(logger.contains(testString + "1"));
+        assertTrue(logger.contains(testString + "2"));
+        assertTrue(logger.contains(testString + "3"));
+        assertEquals(3, logger.getMessages().size());
     }
 
 }
