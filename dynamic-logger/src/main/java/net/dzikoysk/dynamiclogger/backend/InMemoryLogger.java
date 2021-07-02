@@ -2,11 +2,11 @@ package net.dzikoysk.dynamiclogger.backend;
 
 import net.dzikoysk.dynamiclogger.Channel;
 
-import java.util.AbstractMap;
-import java.util.HashMap;
 import java.util.Map.Entry;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
+
+import static net.dzikoysk.dynamiclogger.utils.EntryUtils.entryOf;
 
 /**
  * Stores all messages in memory as a queue and does not print any message directly.
@@ -28,7 +28,7 @@ public class InMemoryLogger extends DefaultLogger {
 
     @Override
     protected void internalLog(Channel channel, String message) {
-        messages.add(new AbstractMap.SimpleImmutableEntry<>(channel, message));
+        messages.add(entryOf(channel, message));
     }
 
     /**

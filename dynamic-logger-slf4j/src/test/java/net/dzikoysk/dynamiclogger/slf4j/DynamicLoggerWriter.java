@@ -4,11 +4,12 @@ import org.tinylog.Level;
 import org.tinylog.core.LogEntry;
 import org.tinylog.writers.AbstractFormatPatternWriter;
 
-import java.util.AbstractMap;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
+
+import static net.dzikoysk.dynamiclogger.utils.EntryUtils.entryOf;
 
 public final class DynamicLoggerWriter extends AbstractFormatPatternWriter {
 
@@ -20,7 +21,7 @@ public final class DynamicLoggerWriter extends AbstractFormatPatternWriter {
 
     @Override
     public void write(LogEntry logEntry) {
-        MESSAGES.add(new AbstractMap.SimpleImmutableEntry<>(logEntry.getLevel(), render(logEntry)));
+        MESSAGES.add(entryOf(logEntry.getLevel(), render(logEntry)));
     }
 
     @Override

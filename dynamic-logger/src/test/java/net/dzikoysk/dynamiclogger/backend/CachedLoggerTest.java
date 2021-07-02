@@ -3,21 +3,25 @@ package net.dzikoysk.dynamiclogger.backend;
 import net.dzikoysk.dynamiclogger.Channel;
 import org.junit.jupiter.api.Test;
 
-import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map.Entry;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static net.dzikoysk.dynamiclogger.utils.EntryUtils.entryOf;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 final class CachedLoggerTest {
+
     @Test
     void shouldStoreMessages() {
         CachedLogger logger = new CachedLogger(Channel.INFO, 3);
         String testString = "INFO Message number ";
 
-        for (int i = 0; i < 4; i++) {
-            logger.info(testString + i);
+        for (int number = 0; number < 4; number++) {
+            logger.info(testString + number);
         }
 
         assertFalse(logger.contains(testString + "0"));
@@ -32,7 +36,7 @@ final class CachedLoggerTest {
         CachedLogger logger = new CachedLogger(2);
 
         logger.info("INFO Find me!");
-        logger.info("INFO Hello.");
+        logger.info("INFO Hello");
 
         assertTrue(logger.find((channel, message) -> message.contains("Find")).isPresent());
         assertFalse(logger.find((channel, message) -> message.contains("Cheese")).isPresent());
@@ -40,19 +44,17 @@ final class CachedLoggerTest {
 
     @Test
     void shouldGetMessages() {
-        CachedLogger logger = new CachedLogger(3);
+        CachedLogger logger = new CachedLogger(2);
 
-        logger.info("INFO First message.");
-        logger.info("INFO Second message.");
-        logger.info("INFO Third message.");
-        logger.info("INFO Fourth message.");
+        logger.info("INFO First message");
+        logger.info("INFO Second message");
+        logger.info("INFO Third message");
 
         List<Entry<Channel, String>> testList = new ArrayList<>();
 
-        testList.add(new AbstractMap.SimpleImmutableEntry<>(Channel.INFO, "INFO First message."));
-        testList.add(new AbstractMap.SimpleImmutableEntry<>(Channel.INFO, "INFO Second message."));
-        testList.add(new AbstractMap.SimpleImmutableEntry<>(Channel.INFO, "INFO Third message."));
-        testList.add(new AbstractMap.SimpleImmutableEntry<>(Channel.INFO, "INFO Fourth message."));
+        testList.add(entryOf(Channel.INFO, "INFO First message"));
+        testList.add(entryOf(Channel.INFO, "INFO Second message"));
+        testList.add(entryOf(Channel.INFO, "INFO Third message"));
         assertNotEquals(logger.getMessages(), testList);
 
         testList.remove(0);

@@ -17,7 +17,7 @@ class CircularBuffer<T> {
         this.bufferArray = new Object[bufferSize];
     }
 
-    public synchronized void add(T item) {
+    public synchronized CircularBuffer<T> add(T item) {
         this.bufferArray[insertLocation] = item;
         this.insertLocation = (insertLocation + 1) % bufferArray.length;
 
@@ -26,6 +26,8 @@ class CircularBuffer<T> {
         } else {
             this.size++;
         }
+
+        return this;
     }
 
     public synchronized int size() {
