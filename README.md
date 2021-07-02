@@ -5,6 +5,7 @@ programmable output formatting, custom levels, print stream redirecting and easi
 Available implementations:
 * [x] System logger
 * [x] In memory logger
+* [x] Cached loggers
 * [x] [SL4J](https://github.com/qos-ch/slf4j) implementation
 * [x] Aggregated logger
 
@@ -16,7 +17,7 @@ Available implementations:
     <!-- For SL4J based implementations -->
     <artifactId>dynamic-logger-sl4j</artifactId>
     <groupId>net.dzikoysk</groupId>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
 </dependency>
 ```
 Repository:
