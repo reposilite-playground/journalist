@@ -51,7 +51,7 @@ public abstract class DefaultLogger implements Logger {
         message = Objects.toString(message);
 
         if (channel.getPriority() >= threshold.getPriority()) {
-            internalLog(channel, String.format(((String) message).replace("{}", "%s"), arguments));
+            internalLog(channel, String.format((message.toString().replace("{}", "%s")), arguments));
         }
 
         return this;

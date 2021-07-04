@@ -16,7 +16,7 @@ final class LoggerTest {
         @Override
         public Logger log(Channel channel, Object message, Object... arguments) {
             message = Objects.toString(message);
-            messages.push(channel.getName() + " | " + String.format(((String) message).replace("{}", "%s"), arguments));
+            messages.push(channel.getName() + " | " + String.format((message.toString()).replace("{}", "%s"), arguments));
             return this;
         }
 
