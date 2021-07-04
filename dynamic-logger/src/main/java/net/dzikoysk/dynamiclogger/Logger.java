@@ -30,7 +30,7 @@ public interface Logger extends Journalist {
      * @param arguments arguments to the message
      * @return the logger instance
      */
-    default Logger fatal(String message, Object... arguments) {
+    default Logger fatal(Object message, Object... arguments) {
         return log(Channel.FATAL, message, arguments);
     }
 
@@ -41,7 +41,7 @@ public interface Logger extends Journalist {
      * @param arguments arguments to the message
      * @return the logger instance
      */
-    default Logger error(String message, Object... arguments) {
+    default Logger error(Object message, Object... arguments) {
         return log(Channel.ERROR, message, arguments);
     }
 
@@ -52,7 +52,7 @@ public interface Logger extends Journalist {
      * @param arguments arguments to the message
      * @return the logger instance
      */
-    default Logger warn(String message, Object... arguments) {
+    default Logger warn(Object message, Object... arguments) {
         return log(Channel.WARN, message, arguments);
     }
 
@@ -63,7 +63,7 @@ public interface Logger extends Journalist {
      * @param arguments arguments to the message
      * @return the logger instance
      */
-    default Logger info(String message, Object... arguments) {
+    default Logger info(Object message, Object... arguments) {
         return log(Channel.INFO, message, arguments);
     }
 
@@ -74,7 +74,7 @@ public interface Logger extends Journalist {
      * @param arguments arguments to the message
      * @return the logger instance
      */
-    default Logger debug(String message, Object... arguments) {
+    default Logger debug(Object message, Object... arguments) {
         return log(Channel.DEBUG, message, arguments);
     }
 
@@ -85,7 +85,7 @@ public interface Logger extends Journalist {
      * @param arguments arguments to the message
      * @return the logger instance
      */
-    default Logger trace(String message, Object... arguments) {
+    default Logger trace(Object message, Object... arguments) {
         return log(Channel.TRACE, message, arguments);
     }
 
@@ -97,7 +97,7 @@ public interface Logger extends Journalist {
      * @param arguments arguments to the message
      * @return the logger instance
      */
-    Logger log(Channel channel, String message, Object... arguments);
+    Logger log(Channel channel, Object message, Object... arguments);
 
     /**
      * Log the given exception to the {@link net.dzikoysk.dynamiclogger.Channel#ERROR} channel

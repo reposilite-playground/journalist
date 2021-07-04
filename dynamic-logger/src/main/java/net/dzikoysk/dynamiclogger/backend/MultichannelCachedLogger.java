@@ -35,6 +35,16 @@ public class MultichannelCachedLogger extends DefaultLogger {
         this(Channel.ALL, capacity, channels);
     }
 
+    /**
+     * Uses {@link net.dzikoysk.dynamiclogger.Channel#INFO} as a default threshold.
+     * Uses {@link net.dzikoysk.dynamiclogger.Channel#getPredefinedChannels()} as a default predefined channels.
+     *
+     * @param capacity the capacity of messages cache
+     */
+    public MultichannelCachedLogger(int capacity) {
+        this(Channel.ALL, capacity, Channel.getPredefinedChannels());
+    }
+
     private Map<Channel, CircularBuffer<String>> createCacheMap(int capacity, Set<Channel> channels) {
         Map<Channel, CircularBuffer<String>> cache = new HashMap<>();
         channels.forEach(channel -> cache.put(channel, new CircularBuffer<>(capacity)));
