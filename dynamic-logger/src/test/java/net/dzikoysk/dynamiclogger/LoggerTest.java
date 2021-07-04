@@ -3,6 +3,7 @@ package net.dzikoysk.dynamiclogger;
 import org.junit.jupiter.api.Test;
 
 import java.io.PrintStream;
+import java.util.Objects;
 import java.util.Stack;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -10,11 +11,12 @@ import static org.junit.jupiter.api.Assertions.*;
 final class LoggerTest {
 
     private static final class TestLogger implements Logger {
-        private final Stack<String> messages = new Stack<>();
+        private final Stack<Object> messages = new Stack<>();
 
         @Override
-        public Logger log(Channel channel, String message, Object... arguments) {
-            messages.push(channel.getName() + " | " + String.format(message.replace("{}", "%s"), arguments));
+        public Logger log(Channel channel, Object message, Object... arguments) {
+            message = Objects.toString(message);
+            messages.push(channel.getName() + " | " + String.format(((String) message).replace("{}", "%s"), arguments));
             return this;
         }
 

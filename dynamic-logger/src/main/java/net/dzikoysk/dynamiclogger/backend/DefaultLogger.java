@@ -21,6 +21,7 @@ import net.dzikoysk.dynamiclogger.Logger;
 import net.dzikoysk.dynamiclogger.utils.RedirectedOutputStream;
 
 import java.io.PrintStream;
+import java.util.Objects;
 
 /**
  * Abstract implementation of basic functionalities meant to be extended by a target implementation.
@@ -42,13 +43,15 @@ public abstract class DefaultLogger implements Logger {
     protected abstract void internalLog(Channel channel, String message);
 
     @Override
-    public Logger log(Channel channel, String message, Object... arguments) {
+    public Logger log(Channel channel, Object message, Object... arguments) {
         if (channel.equals(Channel.ALL)) {
-            throw new IllegalStateException("Cannot log to ALL channel");
+            throw new IllegalStateException("Cannot log to ALL channel.");
         }
 
+        message = Objects.toString(message);
+
         if (channel.getPriority() >= threshold.getPriority()) {
-            internalLog(channel, String.format(message.replace("{}", "%s"), arguments));
+            internalLog(channel, String.format(((String) message).replace("{}", "%s"), arguments));
         }
 
         return this;
