@@ -37,4 +37,11 @@ class DefaultLoggerTest {
         assertTrue(logger.messages.stream().anyMatch(line -> line.contains(Exception.class.getName() + ": TestException")));
     }
 
+    // Support '%' character
+    // ~ https://github.com/reposilite-playground/dynamic-logger/issues/15
+    @Test
+    void shouldPrintPercentageChar() {
+        logger.info("%");
+    }
+
 }

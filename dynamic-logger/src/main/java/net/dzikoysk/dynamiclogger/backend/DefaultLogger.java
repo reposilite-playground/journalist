@@ -21,12 +21,15 @@ import net.dzikoysk.dynamiclogger.Logger;
 import net.dzikoysk.dynamiclogger.utils.RedirectedOutputStream;
 
 import java.io.PrintStream;
+import java.util.regex.Pattern;
 import java.util.Objects;
 
 /**
  * Abstract implementation of basic functionalities meant to be extended by a target implementation.
  */
 public abstract class DefaultLogger implements Logger {
+
+    private static final Pattern ARGUMENT_PATTERN = Pattern.compile("\\{}");
 
     protected Channel threshold;
 
@@ -45,13 +48,17 @@ public abstract class DefaultLogger implements Logger {
     @Override
     public Logger log(Channel channel, Object message, Object... arguments) {
         if (channel.equals(Channel.ALL)) {
-            throw new IllegalStateException("Cannot log to ALL channel.");
+            throw new IllegalStateException("Cannot log to ALL channel");
         }
 
-        message = Objects.toString(message);
+        String formattedMessage = Objects.toString(message);
 
         if (channel.getPriority() >= threshold.getPriority()) {
-            internalLog(channel, String.format((message.toString().replace("{}", "%s")), arguments));
+            for (Object argument : arguments) {
+                formattedMessage = ARGUMENT_PATTERN.matcher(formattedMessage).replaceFirst(Objects.toString(argument));
+            }
+
+            internalLog(channel, formattedMessage);
         }
 
         return this;
