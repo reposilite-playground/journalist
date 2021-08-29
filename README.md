@@ -1,4 +1,4 @@
-# Dynamic Logger [![CI](https://github.com/dzikoysk/dynamic-logger/actions/workflows/maven.yml/badge.svg)](https://github.com/dzikoysk/dynamic-logger/actions/workflows/maven.yml) [![codecov](https://codecov.io/gh/dzikoysk/dynamic-logger/branch/main/graph/badge.svg?token=bxo0JbVeDE)](https://codecov.io/gh/dzikoysk/dynamic-logger)
+# Journalist [![CI](https://github.com/reposilite-playground/journalist/actions/workflows/maven.yml/badge.svg)](https://github.com/dzikoysk/dynamic-logger/actions/workflows/maven.yml) [![codecov](https://codecov.io/gh/dzikoysk/dynamic-logger/branch/main/graph/badge.svg?token=bxo0JbVeDE)](https://codecov.io/gh/dzikoysk/dynamic-logger)
 Tiny logging wrapper dedicated for CLI oriented applications with non-static logger that require dynamic threshold/level changes,
 programmable output formatting, custom levels, print stream redirecting and easily testable output.
 
@@ -9,15 +9,17 @@ Available implementations:
 * [x] [SL4J](https://github.com/qos-ch/slf4j) implementation
 * [x] Aggregated logger
 
-#### Artifact 
+#### Artifact
+
 ```xml
+
 <dependency>
+    <groupId>com.reposilite</groupId>
     <!-- Default -->
-    <artifactId>dynamic-logger</artifactId>
+    <artifactId>journalist</artifactId>
     <!-- For SL4J based implementations -->
-    <artifactId>dynamic-logger-sl4j</artifactId>
-    <groupId>net.dzikoysk</groupId>
-    <version>1.0.3</version>
+    <artifactId>journalist-sl4j</artifactId>
+    <version>1.0.4</version>
 </dependency>
 ```
 Repository:

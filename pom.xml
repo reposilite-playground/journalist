@@ -4,10 +4,10 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>net.dzikoysk</groupId>
-    <artifactId>dynamic-logger-parent</artifactId>
+    <groupId>com.reposilite</groupId>
+    <artifactId>journalist-parent</artifactId>
     <packaging>pom</packaging>
-    <version>1.0.3</version>
+    <version>1.0.4</version>
 
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
@@ -16,17 +16,17 @@
     </properties>
 
     <modules>
-        <module>dynamic-logger</module>
-        <module>dynamic-logger-slf4j</module>
+        <module>journalist</module>
+        <module>journalist-slf4j</module>
     </modules>
 
     <dependencyManagement>
         <dependencies>
             <!-- Modules -->
             <dependency>
-                <groupId>net.dzikoysk</groupId>
-                <artifactId>dynamic-logger</artifactId>
-                <version>1.0.3</version>
+                <groupId>com.reposilite</groupId>
+                <artifactId>journalist</artifactId>
+                <version>1.0.4</version>
             </dependency>
 
             <!-- SL4J -->
