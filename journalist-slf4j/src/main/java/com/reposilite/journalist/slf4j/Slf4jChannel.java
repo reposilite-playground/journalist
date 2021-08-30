@@ -3,8 +3,6 @@ package com.reposilite.journalist.slf4j;
 import com.reposilite.journalist.Channel;
 import org.slf4j.event.Level;
 
-import java.util.Arrays;
-
 public enum Slf4jChannel {
 
     FATAL(Channel.FATAL, Level.ERROR),
@@ -13,6 +11,8 @@ public enum Slf4jChannel {
     INFO(Channel.INFO, Level.INFO),
     DEBUG(Channel.DEBUG, Level.DEBUG),
     TRACE(Channel.TRACE, Level.TRACE);
+
+    private static final Slf4jChannel[] COPY_OF_VALUES = values();
 
     private final Channel channel;
     private final Level level;
@@ -31,10 +31,25 @@ public enum Slf4jChannel {
     }
 
     public static Slf4jChannel of(Channel channel) {
-        return Arrays.stream(values())
-                .filter(slf4jChannel -> slf4jChannel.channel.equals(channel))
-                .findAny()
-                .orElse(INFO);
+        for (Slf4jChannel slf4jChannel : COPY_OF_VALUES) {
+            if (slf4jChannel.getChannel().equals(channel)) {
+                return slf4jChannel;
+            }
+        }
+
+        System.err.println("[Journalist#Internals] Unknown channel: " + channel);
+        return INFO;
+    }
+
+    public static Slf4jChannel of(Level level) {
+        for (Slf4jChannel channel : COPY_OF_VALUES) {
+            if (channel.level == level) {
+                return channel;
+            }
+        }
+
+        System.err.println("[Journalist#Internals] Unknown level: " + level);
+        return INFO;
     }
 
 }
