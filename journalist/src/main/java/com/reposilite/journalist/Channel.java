@@ -42,14 +42,14 @@ public class Channel implements Comparable<Channel> {
      * Represents all logging level with positive priority.
      * You cannot log to this channel, but you can use it as a lowest possible threshold.
      */
-    public static final Channel ALL = new Channel("all", 0.0, ChannelIntention.NEUTRAL);
+    public static final Channel ALL = new Channel("ALL", 0.0, ChannelIntention.NEUTRAL);
 
-    public static final Channel FATAL = new Channel("fatal", 60.0, ChannelIntention.NEGATIVE);
-    public static final Channel ERROR = new Channel("error", 50.0, ChannelIntention.NEGATIVE);
-    public static final Channel WARN = new Channel("warn", 40.0, ChannelIntention.NEGATIVE);
-    public static final Channel INFO = new Channel("info", 30.0, ChannelIntention.NEUTRAL);
-    public static final Channel DEBUG = new Channel("debug", 20.0, ChannelIntention.NEUTRAL);
-    public static final Channel TRACE = new Channel("trace", 10.0, ChannelIntention.NEUTRAL);
+    public static final Channel FATAL = new Channel("FATAL", 60.0, ChannelIntention.NEGATIVE);
+    public static final Channel ERROR = new Channel("ERROR", 50.0, ChannelIntention.NEGATIVE);
+    public static final Channel WARN = new Channel("WARN", 40.0, ChannelIntention.NEGATIVE);
+    public static final Channel INFO = new Channel("INFO", 30.0, ChannelIntention.NEUTRAL);
+    public static final Channel DEBUG = new Channel("DEBUG", 20.0, ChannelIntention.NEUTRAL);
+    public static final Channel TRACE = new Channel("TRACE", 10.0, ChannelIntention.NEUTRAL);
 
     private static final Set<Channel> PREDEFINED_CHANNELS = new TreeSet<>(Arrays.asList(FATAL, ERROR, WARN, INFO, DEBUG, TRACE));
 
@@ -89,6 +89,11 @@ public class Channel implements Comparable<Channel> {
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         result = 31 * result + intention.hashCode();
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return getName();
     }
 
     /**

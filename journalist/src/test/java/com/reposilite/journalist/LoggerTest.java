@@ -47,25 +47,25 @@ final class LoggerTest {
         TestLogger logger = new TestLogger();
 
         logger.trace("Trace {}-{}", "trace", 1);
-        assertEquals("trace | Trace trace-1", logger.messages.peek());
+        assertEquals("TRACE | Trace trace-1", logger.messages.peek());
 
         logger.debug("Debug {}-{}", "debug", 1);
-        assertEquals("debug | Debug debug-1", logger.messages.peek());
+        assertEquals("DEBUG | Debug debug-1", logger.messages.peek());
 
         logger.info("Info {}-{}", "info", 1);
-        assertEquals("info | Info info-1", logger.messages.peek());
+        assertEquals("INFO | Info info-1", logger.messages.peek());
 
         logger.warn("Warn {}-{}", "warn", 1);
-        assertEquals("warn | Warn warn-1", logger.messages.peek());
+        assertEquals("WARN | Warn warn-1", logger.messages.peek());
 
         logger.error("Error {}-{}", "error", 1);
-        assertEquals("error | Error error-1", logger.messages.peek());
+        assertEquals("ERROR | Error error-1", logger.messages.peek());
 
         logger.fatal("Fatal {}-{}", "fatal", 1);
-        assertEquals("fatal | Fatal fatal-1", logger.messages.peek());
+        assertEquals("FATAL | Fatal fatal-1", logger.messages.peek());
 
         logger.exception(new Exception("TestException"));
-        assertEquals("error | TestException", logger.messages.peek());
+        assertEquals("ERROR | TestException", logger.messages.peek());
     }
 
 }

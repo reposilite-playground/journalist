@@ -7,35 +7,29 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>journalist-slf4j</artifactId>
+    <artifactId>journalist-tinylog</artifactId>
 
     <dependencies>
         <dependency>
             <groupId>com.reposilite</groupId>
-            <artifactId>journalist</artifactId>
+            <artifactId>journalist-slf4j</artifactId>
         </dependency>
 
-        <!-- SLF4J -->
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-        </dependency>
-
-        <!-- Tests :: tinylog -->
-        <dependency>
-            <groupId>org.tinylog</groupId>
-            <artifactId>slf4j-tinylog</artifactId>
-            <scope>test</scope>
-        </dependency>
+        <!-- Tinylog -->
         <dependency>
             <groupId>org.tinylog</groupId>
             <artifactId>tinylog-api</artifactId>
-            <scope>test</scope>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.tinylog</groupId>
+            <artifactId>slf4j-tinylog</artifactId>
+            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.tinylog</groupId>
             <artifactId>tinylog-impl</artifactId>
-            <scope>test</scope>
+            <scope>compile</scope>
         </dependency>
 
         <!-- Tests -->

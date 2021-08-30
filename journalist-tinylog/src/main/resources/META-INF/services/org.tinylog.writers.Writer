@@ -14,4 +14,4 @@
 # limitations under the License.
 #
 
-com.reposilite.journalist.slf4j.TinyLogWriter
+com.reposilite.journalist.tinylog.TinyLogWriter
