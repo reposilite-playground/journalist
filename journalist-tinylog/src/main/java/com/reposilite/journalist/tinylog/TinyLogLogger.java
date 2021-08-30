@@ -19,7 +19,7 @@ public class TinyLogLogger extends DefaultLogger {
     private void internalLog(LogEntry entry) {
         internalLog(
                 TinyLogLevel.toSlf4jChannel(entry.getLevel()).getChannel(),
-                entry.toString()
+                TinyLogWriter.renderEntry(entry)
         );
     }
 

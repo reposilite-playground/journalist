@@ -9,11 +9,13 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public final class TinyLogWriter extends AbstractFormatPatternWriter {
 
+    private static TinyLogWriter INSTANCE;
     private static final AtomicInteger ID_ASSIGNER = new AtomicInteger();
     private static final Map<Integer, Subscriber<LogEntry>> SUBSCRIBERS = new ConcurrentHashMap<>(2);
 
     public TinyLogWriter(Map<String, String> properties) {
         super(properties);
+        INSTANCE = this;
     }
 
     public static int subscribe(Subscriber<LogEntry> subscriber) {
@@ -24,6 +26,10 @@ public final class TinyLogWriter extends AbstractFormatPatternWriter {
 
     public static boolean unsubscribe(int id) {
         return SUBSCRIBERS.remove(id) != null;
+    }
+
+    public static String renderEntry(LogEntry entry) {
+        return INSTANCE.render(entry);
     }
 
     @Override
