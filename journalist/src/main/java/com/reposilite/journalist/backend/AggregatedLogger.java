@@ -14,13 +14,13 @@ public class AggregatedLogger extends DefaultLogger {
 
     private final Collection<? extends Logger> loggers;
 
-    public AggregatedLogger(Collection<? extends Logger> loggers) {
-        super(Channel.ALL);
+    public AggregatedLogger(Channel threshold, Collection<? extends Logger> loggers) {
+        super(threshold);
         this.loggers = loggers;
     }
 
     public AggregatedLogger(Logger... loggers) {
-        this(Arrays.asList(loggers));
+        this(Channel.ALL, Arrays.asList(loggers));
     }
 
     @Override

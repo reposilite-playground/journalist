@@ -28,27 +28,39 @@ public class PrintStreamLogger extends DefaultLogger {
 
     private final PrintStream out;
     private final PrintStream err;
+    private final boolean newline;
 
-    public PrintStreamLogger(PrintStream out, PrintStream err, Channel threshold) {
+    public PrintStreamLogger(PrintStream out, PrintStream err, Channel threshold, boolean newline) {
         super(threshold);
         this.out = out;
         this.err = err;
+        this.newline = newline;
     }
 
     /**
      * Uses {@link com.reposilite.journalist.Channel#INFO} as default threshold.
      */
     public PrintStreamLogger(PrintStream out, PrintStream err) {
-        this(out, err, Channel.ALL);
+        this(out, err, Channel.ALL, true);
     }
 
     @Override
     protected void internalLog(Channel channel, String message) {
         if (channel.getIntention() == ChannelIntention.NEGATIVE) {
-            err.println(message);
+            if (newline) {
+                err.println(message);
+            }
+            else {
+                err.print(message);
+            }
         }
         else {
-            out.println(message);
+            if (newline) {
+                out.println(message);
+            }
+            else {
+                out.print(message);
+            }
         }
     }
 
