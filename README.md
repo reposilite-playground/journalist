@@ -19,7 +19,7 @@ Available implementations:
     <artifactId>journalist</artifactId>
     <!-- For SL4J based implementations -->
     <artifactId>journalist-sl4j</artifactId>
-    <version>1.0.8</version>
+    <version>1.0.9</version>
 </dependency>
 ```
 Repository:
