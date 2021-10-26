@@ -1,8 +1,8 @@
 package com.reposilite.journalist.backend;
 
 import com.reposilite.journalist.Channel;
-import panda.std.Publisher;
-import panda.std.Subscriber;
+import panda.std.reactive.Publisher;
+import panda.std.reactive.Subscriber;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;

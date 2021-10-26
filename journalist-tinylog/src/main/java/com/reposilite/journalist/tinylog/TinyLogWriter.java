@@ -2,7 +2,7 @@ package com.reposilite.journalist.tinylog;
 
 import org.tinylog.core.LogEntry;
 import org.tinylog.writers.AbstractFormatPatternWriter;
-import panda.std.Subscriber;
+import panda.std.reactive.Subscriber;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;

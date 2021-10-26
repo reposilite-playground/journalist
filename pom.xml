@@ -7,7 +7,7 @@
     <groupId>com.reposilite</groupId>
     <artifactId>journalist-parent</artifactId>
     <packaging>pom</packaging>
-    <version>1.0.9</version>
+    <version>1.0.10</version>
 
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
@@ -27,24 +27,24 @@
             <dependency>
                 <groupId>com.reposilite</groupId>
                 <artifactId>journalist</artifactId>
-                <version>1.0.9</version>
+                <version>1.0.10</version>
             </dependency>
             <dependency>
                 <groupId>com.reposilite</groupId>
                 <artifactId>journalist-slf4j</artifactId>
-                <version>1.0.9</version>
+                <version>1.0.10</version>
             </dependency>
             <dependency>
                 <groupId>com.reposilite</groupId>
                 <artifactId>journalist-tinylog</artifactId>
-                <version>1.0.9</version>
+                <version>1.0.10</version>
             </dependency>
 
             <!-- Utils -->
             <dependency>
                 <groupId>org.panda-lang</groupId>
                 <artifactId>expressible</artifactId>
-                <version>1.0.6</version>
+                <version>1.1.1</version>
             </dependency>
 
             <!-- SL4J -->
