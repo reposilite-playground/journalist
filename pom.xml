@@ -7,12 +7,15 @@
     <groupId>com.reposilite</groupId>
     <artifactId>journalist-parent</artifactId>
     <packaging>pom</packaging>
-    <version>1.0.10</version>
+    <version>1.0.11</version>
 
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <tinylog.version>2.7.0</tinylog.version>
+        <junit.version>5.10.2</junit.version>
     </properties>
 
     <modules>
@@ -27,48 +30,48 @@
             <dependency>
                 <groupId>com.reposilite</groupId>
                 <artifactId>journalist</artifactId>
-                <version>1.0.10</version>
+                <version>1.0.11</version>
             </dependency>
             <dependency>
                 <groupId>com.reposilite</groupId>
                 <artifactId>journalist-slf4j</artifactId>
-                <version>1.0.10</version>
+                <version>1.0.11</version>
             </dependency>
             <dependency>
                 <groupId>com.reposilite</groupId>
                 <artifactId>journalist-tinylog</artifactId>
-                <version>1.0.10</version>
+                <version>1.0.11</version>
             </dependency>
 
             <!-- Utils -->
             <dependency>
                 <groupId>org.panda-lang</groupId>
                 <artifactId>expressible</artifactId>
-                <version>1.1.1</version>
+                <version>1.3.5</version>
             </dependency>
 
             <!-- SL4J -->
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-api</artifactId>
-                <version>1.7.29</version>
+                <version>2.0.13</version>
             </dependency>
             <dependency>
                 <groupId>org.tinylog</groupId>
                 <artifactId>slf4j-tinylog</artifactId>
-                <version>2.3.1</version>
+                <version>${tinylog.version}</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>org.tinylog</groupId>
                 <artifactId>tinylog-api</artifactId>
-                <version>2.3.1</version>
+                <version>${tinylog.version}</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>org.tinylog</groupId>
                 <artifactId>tinylog-impl</artifactId>
-                <version>2.3.1</version>
+                <version>${tinylog.version}</version>
                 <scope>test</scope>
             </dependency>
 
@@ -82,19 +85,19 @@
             <dependency>
                 <groupId>org.junit.jupiter</groupId>
                 <artifactId>junit-jupiter-params</artifactId>
-                <version>5.7.1</version>
+                <version>${junit.version}</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>org.junit.jupiter</groupId>
                 <artifactId>junit-jupiter-api</artifactId>
-                <version>5.7.1</version>
+                <version>${junit.version}</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>org.junit.jupiter</groupId>
                 <artifactId>junit-jupiter-engine</artifactId>
-                <version>5.7.1</version>
+                <version>${junit.version}</version>
                 <scope>test</scope>
             </dependency>
         </dependencies>
@@ -102,15 +105,15 @@
 
     <repositories>
         <repository>
-            <id>panda-repository</id>
-            <url>https://repo.panda-lang.org/releases</url>
+            <id>reposilite-repository</id>
+            <url>https://maven.reposilite.com/releases</url>
         </repository>
     </repositories>
 
     <distributionManagement>
         <repository>
-            <id>panda-repository</id>
-            <url>https://repo.panda-lang.org/releases</url>
+            <id>reposilite-repository</id>
+            <url>https://maven.reposilite.com/releases</url>
         </repository>
     </distributionManagement>
 
@@ -139,7 +142,7 @@
                 <plugin>
                     <groupId>org.jacoco</groupId>
                     <artifactId>jacoco-maven-plugin</artifactId>
-                    <version>0.8.5</version>
+                    <version>0.8.12</version>
                     <executions>
                         <execution>
                             <goals>

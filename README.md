@@ -1,4 +1,4 @@
-# Journalist [![CI](https://github.com/reposilite-playground/journalist/actions/workflows/maven.yml/badge.svg)](https://github.com/dzikoysk/dynamic-logger/actions/workflows/maven.yml) [![codecov](https://codecov.io/gh/dzikoysk/dynamic-logger/branch/main/graph/badge.svg?token=bxo0JbVeDE)](https://codecov.io/gh/dzikoysk/dynamic-logger)
+# Journalist [![CI](https://github.com/reposilite-playground/journalist/actions/workflows/maven.yml/badge.svg)](https://github.com/reposilite-playground/journalist/actions/workflows/maven.yml) [![codecov](https://codecov.io/gh/dzikoysk/dynamic-logger/branch/main/graph/badge.svg?token=bxo0JbVeDE)](https://codecov.io/gh/dzikoysk/dynamic-logger)
 Tiny logging wrapper dedicated for CLI oriented applications with non-static logger that require dynamic threshold/level changes,
 programmable output formatting, custom levels, print stream redirecting and easily testable output.
 
@@ -19,14 +19,14 @@ Available implementations:
     <artifactId>journalist</artifactId>
     <!-- For SL4J based implementations -->
     <artifactId>journalist-sl4j</artifactId>
-    <version>1.0.10</version>
+    <version>1.0.11</version>
 </dependency>
 ```
 Repository:
 ```xml
 <repository>
     <id>panda-repository</id>
-    <url>https://repo.panda-lang.org/releases</url>
+    <url>https://maven.reposilite.com/releases</url>
 </repository>
 ```
 
@@ -86,5 +86,5 @@ Logger logger = new AggregatedLogger(
 ```
 
 ### Used by
-* [Panda](https://github.com/panda-lang/panda)
 * [Reposilite](https://github.com/dzikoysk/reposilite/)
+* [Panda](https://github.com/panda-lang/panda)
