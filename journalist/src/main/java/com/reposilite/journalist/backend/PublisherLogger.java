@@ -3,15 +3,15 @@ package com.reposilite.journalist.backend;
 import com.reposilite.journalist.Channel;
 import panda.std.reactive.Publisher;
 import panda.std.reactive.Subscriber;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.concurrent.ConcurrentHashMap;
 
 import static com.reposilite.journalist.utils.EntryUtils.entryOf;
 
 public class PublisherLogger extends DefaultLogger implements Publisher<Integer, Entry<Channel, String>> {
 
-    private final Map<Integer, Subscriber<? super Entry<Channel, String>>> subscribers = new HashMap<>(2);
+    private final Map<Integer, Subscriber<? super Entry<Channel, String>>> subscribers = new ConcurrentHashMap<>(2);
     private int id = 0;
 
     public PublisherLogger(Channel threshold) {

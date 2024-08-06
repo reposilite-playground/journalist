@@ -2,12 +2,12 @@ package com.reposilite.journalist.backend;
 
 import com.reposilite.journalist.Channel;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Optional;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.BiPredicate;
 import java.util.stream.Collectors;
 
@@ -46,7 +46,7 @@ public class MultichannelCachedLogger extends DefaultLogger {
     }
 
     private Map<Channel, CircularBuffer<String>> createCacheMap(int capacity, Set<Channel> channels) {
-        Map<Channel, CircularBuffer<String>> cache = new HashMap<>();
+        Map<Channel, CircularBuffer<String>> cache = new ConcurrentHashMap<>();
         channels.forEach(channel -> cache.put(channel, new CircularBuffer<>(capacity)));
         return cache;
     }
